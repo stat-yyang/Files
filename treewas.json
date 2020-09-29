@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "TreeWAS hierarchy",
+  "padding": 16,
+  "width": 1000,
+	"height": 1000,
+  "autosize": {"type": "pad", "resize": true},
+
+  "config": {
+    "background": null,
+    "group": {
+      "fill": "rgb(250,250,250)",
+      "stroke": "rgb(225,225,225)"
+    }
+  },
+
+  "title": {
+    "text": "TreeWAS association result — Variant ID: ",
+    "orient": "top",
+    "anchor": "start",
+    "fontSize": 13,
+    "fontWeight": "normal",
+    "color": "#888"
+  },
+
+  "signals": [
+		{
+			"name": "cutoff",
+			"value": 0.1
+		},
+		{
+      "name": "scaled",
+      "value": "absolute",
+      "bind": {"input": "radio", "options": ["absolute", "relative"], "name": "Node arrangement:"}
+    },
+		{
+      "name": "colored",
+      "value": "continuous",
+      "bind": {"input": "radio", "options": ["continuous", "discrete"], "name": "Color scale:"}
+    }
+  ],
+
+  "data": [
+    {
+      "name": "tree",
+      "format": "json",
+      "url": "./test.json",
+      "transform": [
+        {
+          "type": "stratify",
+          "key": "ID",
+          "parentKey": "Par"
+        },
+        {
+          "type": "partition",
+          "field": "POST_ACTIVE",
+          "size": [{"signal": "2 * PI"}, {"signal": "width / 2.05"}],
+          "as": ["a0", "r0", "a1", "r1", "depth", "children"]
+        }
+      ]
+    },
+		{
+			"name": "ntree",
+			"source": "tree",
+			"transform": [
+				{
+					"type": "aggregate"
+				}
+			]
+		}
+  ],
+
+  "scales": [
+		{
+      "name": "ccolor",
+      "type": "sequential",
+      "domain": {"data": "tree", "field": "max_b"},
+      "domainMax": 1,
+      "domainMid": 0,
+      "domainMin": -1,
+			"range": ["#A20017", "#FF452E", "#FF8B5C", "#EEEEEE", "#A2E7FF", "#17A2FF", "#005CD0"]
+    }
+  ],
+
+  "legends": [
+    {
+      "fill": "ccolor",
+      "type": "gradient",
+      "title": "max_b",
+      "titleFontSize": 15,
+      "titlePadding": 5,
+			"padding": 5,
+			"offset": 5,
+      "gradientLength": {"signal": "height / 2"},
+      "gradientStrokeColor": {"value": "black"},
+      "gradientStrokeWidth": 0.5
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "tooltip": {"signal": "{title: datum.meaning, 'POST_ACTIVE': format(datum.POST_ACTIVE, ',.3f') + pad(' ', round(datum.POST_ACTIVE * 25), '█')}"}
+        },
+        "update": {
+          "startAngle": {"field": "a0"},
+          "endAngle": {"field": "a1"},
+          "innerRadius": {"field": "r0"},
+          "outerRadius": {"field": "r1"},
+					"fill": {"scale": "ccolor", "signal": "datum.POST_ACTIVE"},
+          "stroke": {"value": "black"},
+          "strokeWidth": {"signal": "2 * exp(-1 * datum.depth)"},
+          "strokeOpacity": {"value": 0.5},
+          "zindex": {"value": 0}
+        },
+        "hover": {
+          "stroke": {"value": "black"},
+          "strokeWidth": {"signal": "2 * exp(-0.5 * datum.depth)"},
+          "strokeOpacity": {"value": 1},
+          "cursor": {"value": "pointer"},
+          "zindex": {"value": 1}
+        }
+      }
+    },
+    {
+      "type": "text",
+			"from": {"data": "ntree"},
+      "encode": {
+        "enter": {
+          "fill": {"value": "#888"},
+          "text": {"signal": "'Number of nodes shown: ' + datum.count"},
+          "x": {"signal": "width - 4"},
+          "y": {"signal": "height - 4"},
+          "fontSize": {"value": 11},
+          "align": {"value": "right"},
+          "baseline": {"value": "bottom"}
+        }
+      }
+    }
+  ]
+}
