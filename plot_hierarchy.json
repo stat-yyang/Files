@@ -44,7 +44,7 @@
     {
       "name": "tree",
       "format": "json",
-      "url": "./aWQ6OTM4MCxsaW06MTAsZGI6ImhlcyIsMDk6Mzk.json",
+      "url": "https://raw.githubusercontent.com/stat-yyang/Files/master/aWQ6OTM4MCxsaW06MTAsZGI6ImhlcyIsMDk6Mzk.json",
       "transform": [
         {
           "type": "stratify",
