@@ -56,6 +56,12 @@
           "field": "POST_ACTIVE",
           "size": [{"signal": "2 * PI"}, {"signal": "width / 2.05"}],
           "as": ["a0", "r0", "a1", "r1", "depth", "children"]
+        },
+        {
+          "type": "formula",
+          "as": "z2",
+          "expr": "(datum.POST_ACTIVE >= cutoff)  ? 1: 0",
+          "initonly": true
         }
       ]
     },
@@ -105,14 +111,14 @@
         "enter": {
           "x": {"signal": "width / 2"},
           "y": {"signal": "height / 2"},
-          "tooltip": {"signal": "{title: datum.meaning, 'POST_ACTIVE': format(datum.POST_ACTIVE, ',.3f') + pad(' ', round(datum.POST_ACTIVE * 25), '█')}"}
+          "tooltip": {"signal": "{title: datum.meaning, 'POST_ACTIVE': format(datum.POST_ACTIVE, ',.3f') + pad(' ', round(datum.POST_ACTIVE * 10), '█')}"}
         },
         "update": {
           "startAngle": {"field": "a0"},
           "endAngle": {"field": "a1"},
           "innerRadius": {"field": "r0"},
           "outerRadius": {"field": "r1"},
-					"fill": {"scale": "ccolor", "signal": "datum.POST_ACTIVE"},
+					"fill": {"scale": "ccolor", "signal": "datum.z2"},
           "stroke": {"value": "black"},
           "strokeWidth": {"signal": "2 * exp(-1 * datum.depth)"},
           "strokeOpacity": {"value": 0.5},
