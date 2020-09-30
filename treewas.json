@@ -52,6 +52,10 @@
           "parentKey": "Par"
         },
         {
+          "type": "filter",
+          "expr": "datum.POST_ACTIVE > cutoff"
+        },
+        {
           "type": "partition",
           "field": "POST_ACTIVE",
           "size": [{"signal": "2 * PI"}, {"signal": "width / 2.05"}],
@@ -80,7 +84,7 @@
 		{
       "name": "ccolor",
       "type": "sequential",
-      "domain": {"data": "tree", "field": "max_b"},
+      "domain": {"data": "tree", "field": "POST_ACTIVE"},
       "domainMax": 1,
       "domainMid": 0,
       "domainMin": -1,
@@ -97,7 +101,7 @@
       "titlePadding": 5,
 			"padding": 5,
 			"offset": 5,
-      "gradientLength": {"signal": "height / 2"},
+      "gradientLength": {"signal": "height"},
       "gradientStrokeColor": {"value": "black"},
       "gradientStrokeWidth": 0.5
     }
@@ -111,14 +115,14 @@
         "enter": {
           "x": {"signal": "width / 2"},
           "y": {"signal": "height / 2"},
-          "tooltip": {"signal": "{title: datum.meaning, 'POST_ACTIVE': format(datum.POST_ACTIVE, ',.3f') + pad(' ', round(datum.POST_ACTIVE * 10), '█')}"}
+          "tooltip": {"signal": "{title: datum.meaning, 'POST_ACTIVE': format(datum.POST_ACTIVE, ',.3f') + pad(' ', round(datum.POST_ACTIVE * 10), '█'), 'max_b': format(datum.max_b, ',.3f') + pad(' ', round(datum.POST_ACTIVE * 10), '█')}"}
         },
         "update": {
           "startAngle": {"field": "a0"},
           "endAngle": {"field": "a1"},
           "innerRadius": {"field": "r0"},
           "outerRadius": {"field": "r1"},
-					"fill": {"scale": "ccolor", "signal": "datum.z2"},
+					"fill": {"scale": "ccolor", "signal": "datum.max_b"},
           "stroke": {"value": "black"},
           "strokeWidth": {"signal": "2 * exp(-1 * datum.depth)"},
           "strokeOpacity": {"value": 0.5},
@@ -150,3 +154,4 @@
     }
   ]
 }
+
