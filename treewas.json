@@ -83,19 +83,19 @@
   "scales": [
 		{
       "name": "ccolor",
-      "type": "linear",
+      "type": "sequential",
       "domain": {"data": "tree", "field": "POST_ACTIVE"},
       "domainMax": 1,
       "domainMid": 0.5,
       "domainMin": 0,
-			"range": ["#A20017", "#FF452E", "#FF8B5C", "#EEEEEE", "#A2E7FF", "#17A2FF", "#005CD0"]
+      "range": 'heatmap'
     }
   ],
 
   "legends": [
     {
       "fill": "ccolor",
-      "type": "linear",
+      "type": "sequential",
       "title": "POST_ACTIVE",
       "titleFontSize": 15,
       "titlePadding": 5,
