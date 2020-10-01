@@ -103,7 +103,7 @@
 			"offset": 5,
       "gradientLength": {"signal": "height"},
       "gradientStrokeColor": {"value": "black"},
-      "gradientStrokeWidth": 0.5
+      "gradientStrokeWidth": 1
     }
   ],
 
