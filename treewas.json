@@ -149,7 +149,16 @@
           "fontSize": {"value": 11},
           "align": {"value": "right"},
           "baseline": {"value": "bottom"}
-        }
+        },
+	"update": {
+	  "fill": {"value": "#888"},
+          "text": {"signal": "'Number of nodes shown: ' + datum.count + ' when cut-off is ' + cutoff"},
+          "x": {"signal": "width - 4"},
+          "y": {"signal": "height - 4"},
+          "fontSize": {"value": 11},
+          "align": {"value": "right"},
+          "baseline": {"value": "bottom"}
+	}
       }
     }
   ]
