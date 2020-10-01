@@ -83,7 +83,7 @@
   "scales": [
 		{
       "name": "ccolor",
-      "type": "sequential",
+      "type": "linear",
       "domain": {"data": "tree", "field": "POST_ACTIVE"},
       "domainMax": 1,
       "domainMid": 0.5,
@@ -95,7 +95,7 @@
   "legends": [
     {
       "fill": "ccolor",
-      "type": "gradient",
+      "type": "linear",
       "title": "POST_ACTIVE",
       "titleFontSize": 15,
       "titlePadding": 5,
