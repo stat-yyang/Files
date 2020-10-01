@@ -28,17 +28,7 @@
 			"name": "cutoff",
 			"value": 0.9,
             "bind": {"input":  "range", "max":  1, "min": 0, "step":  0.01}
-		},
-		{
-      "name": "scaled",
-      "value": "absolute",
-      "bind": {"input": "radio", "options": ["absolute", "relative"], "name": "Node arrangement:"}
-    },
-		{
-      "name": "colored",
-      "value": "continuous",
-      "bind": {"input": "radio", "options": ["continuous", "discrete"], "name": "Color scale:"}
-    }
+		}
   ],
 
   "data": [
