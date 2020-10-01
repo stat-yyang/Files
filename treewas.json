@@ -86,8 +86,8 @@
       "type": "sequential",
       "domain": {"data": "tree", "field": "POST_ACTIVE"},
       "domainMax": 1,
-      "domainMid": 0.5,
-      "domainMin": 0,
+      "domainMid": 0,
+      "domainMin": -1,
       "range": ["#A20017", "#FF452E", "#FF8B5C", "#EEEEEE", "#A2E7FF", "#17A2FF", "#005CD0"]
     }
   ],
