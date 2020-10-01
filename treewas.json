@@ -88,7 +88,7 @@
       "domainMax": 2,
       "domainMid": 1,
       "domainMin": 0,
-      "range": ["#A20017", "#FF452E", "#FF8B5C"]
+      "range": ["#FF8B5C", "#FF452E", "#A20017"]
     }
   ],
 
@@ -143,7 +143,7 @@
       "encode": {
         "enter": {
           "fill": {"value": "#888"},
-          "text": {"signal": "'Number of nodes shown: ' + datum.count"},
+          "text": {"signal": "'Number of nodes shown: ' + datum.count when cut-off is cutoff"},
           "x": {"signal": "width - 4"},
           "y": {"signal": "height - 4"},
           "fontSize": {"value": 11},
