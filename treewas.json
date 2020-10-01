@@ -95,7 +95,7 @@
   "legends": [
     {
       "fill": "ccolor",
-      "type": "sequential",
+      "type": "gradient",
       "title": "POST_ACTIVE",
       "titleFontSize": 15,
       "titlePadding": 5,
