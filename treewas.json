@@ -85,9 +85,9 @@
       "name": "ccolor",
       "type": "sequential",
       "domain": {"data": "tree", "field": "POST_ACTIVE"},
-      "domainMax": 1,
-      "domainMid": 0,
-      "domainMin": -1,
+      "domainMax": 2,
+      "domainMid": 1,
+      "domainMin": 0,
       "range": ["#A20017", "#FF452E", "#FF8B5C"]
     }
   ],
